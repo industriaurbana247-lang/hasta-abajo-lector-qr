@@ -64,7 +64,7 @@
           { facingMode: "environment" },
           { fps: 10, qrbox: 220 },
           function(texto) {
-            resultado.textContent = "QR DETECTADO (prueba)";
+resultado.textContent = "QR LEÍDO: " + texto;
             lector.stop().catch(() => {});
           },
           function() {}
