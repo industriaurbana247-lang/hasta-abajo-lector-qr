@@ -64,8 +64,8 @@
           { facingMode: "environment" },
           { fps: 10, qrbox: 220 },
           function(texto) {
-resultado.textContent = "QR LEÍDO: " + texto;
-            lector.stop().catch(() => {});
+resultado.textContent = "QR detectado. Pendiente de validación.";
+console.log("QR detectado correctamente");            lector.stop().catch(() => {});
           },
           function() {}
         );
