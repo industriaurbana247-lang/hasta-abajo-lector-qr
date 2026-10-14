@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HASTA ABAJO - Lector QR</title>
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 25px;
+      background: #101010;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    h1 { color: #ff209b; font-size: 38px; }
+    .panel {
+      max-width: 420px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #222;
+      border-radius: 15px;
+    }
+    button {
+      width: 100%;
+      padding: 17px;
+      background: #ff209b;
+      color: white;
+      border: 0;
+      border-radius: 8px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    #reader { margin-top: 20px; }
+    #resultado { margin-top: 20px; overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+  <h1>HASTA ABAJO</h1>
+  <p>PRUEBA DE CÁMARA 2026</p>
+
+  <div class="panel">
+    <button onclick="abrirCamara()">📷 ABRIR CÁMARA</button>
+    <div id="reader"></div>
+    <p id="resultado">Esperando prueba...</p>
+  </div>
+
+  <script>
+    let lector;
+
+    async function abrirCamara() {
+      const resultado = document.getElementById("resultado");
+
+      try {
+        if (typeof Html5Qrcode === "undefined") {
+          throw new Error("No se cargó la biblioteca QR");
+        }
+
+        lector = new Html5Qrcode("reader");
+
+        await lector.start(
+          { facingMode: "environment" },
+          { fps: 10, qrbox: 220 },
+          function(texto) {
+            resultado.textContent = "QR DETECTADO (prueba)";
+            lector.stop().catch(() => {});
+          },
+          function() {}
+        );
+
+        resultado.textContent = "Cámara funcionando correctamente";
+
+      } catch (error) {
+        resultado.textContent =
+          "ERROR: " + (error.message || String(error));
+      }
+    }
+  </script>
+</body>
+</html>
