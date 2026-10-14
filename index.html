@@ -64,6 +64,14 @@
 
     async function abrirCamara() {
       const resultado = document.getElementById("resultado");
+      
+const clavePuerta = document.getElementById("clavePuerta").value.trim();
+
+if (!clavePuerta) {
+  resultado.textContent = "🔒 Ingresá la contraseña para abrir la cámara.";
+  return;
+}
+
 
       try {
         if (typeof Html5Qrcode === "undefined") {
