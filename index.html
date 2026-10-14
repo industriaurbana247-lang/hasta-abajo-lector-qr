@@ -85,6 +85,9 @@ if (!clavePuerta) {
           { fps: 10, qrbox: 220 },
           function(texto) {
 resultado.textContent = "QR leído correctamente. Preparando validación.";
+            const urlControl = "https://script.google.com/macros/s/AKfycbxcwzHQDNR_QcLS_7RxCb3YrLNUEaFzxlRr1iK12pwOCkl_nN2VoFp-O3gAzDNT-hDdqQ/exec?pagina=puerta";
+const separador = urlControl.includes("?") ? "&" : "?";
+window.location.href = urlControl + separador + "token=" + encodeURIComponent(texto);
 console.log("Token QR recibido:", texto ? "SÍ" : "NO");
 console.log("QR detectado correctamente");            lector.stop().catch(() => {});
           },
