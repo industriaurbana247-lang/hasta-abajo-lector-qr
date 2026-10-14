@@ -84,7 +84,8 @@ if (!clavePuerta) {
           { facingMode: "environment" },
           { fps: 10, qrbox: 220 },
           function(texto) {
-resultado.textContent = "QR detectado. Pendiente de validación.";
+resultado.textContent = "QR leído correctamente. Preparando validación.";
+console.log("Token QR recibido:", texto ? "SÍ" : "NO");
 console.log("QR detectado correctamente");            lector.stop().catch(() => {});
           },
           function() {}
